@@ -62,6 +62,7 @@ locally on CPU. No API key is needed. Speak in the language selected when creati
 3. Record a turn in the browser, or upload WAV/MP3/M4A/WebM/OGG audio.
 4. Click **Judge this turn**. The transcript, scoring checks, and updated totals appear.
 5. The next player is selected automatically. Final totals determine the winner; ties are shared.
+   Use **Continue saved game** on the home screen to resume a voice game after refresh.
 
 Limits: **20 seconds / 10 MB per turn**. Denied microphone access has an upload fallback.
 Silent/unclear recordings do not advance the turn. Recognition can be wrong: inspect the

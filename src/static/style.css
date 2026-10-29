@@ -15,3 +15,4 @@
 @media(max-width:1000px){.game-grid{grid-template-columns:1fr}.game-card{min-height:220px}.game-doodle{height:55px;font-size:55px;margin-bottom:16px}.game-doodle img{width:55px;height:55px}.game-card .primary{width:auto}.game-card p{margin-bottom:20px}}
 @media(max-width:760px){.voice-capture{gap:10px}.voice-capture h3{font-size:14px}.voice-capture p{font-size:11px}.voice-mic{font-size:45px}.voice-capture output{font-size:24px}}
 @media(max-width:760px){.hero h1 em{white-space:normal}}
+.resume-game{margin-top:12px}.game-card .primary{flex:none}

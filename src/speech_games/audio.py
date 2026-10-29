@@ -33,6 +33,8 @@ class LocalTranscriber:
                 for converted in resampler.resample(None):
                     pieces.append(converted.to_ndarray().reshape(-1))
             samples=np.concatenate(pieces).astype(np.float32)/32768.0 if pieces else np.zeros(0,dtype=np.float32)
+        except ValueError:
+            raise
         except Exception as exc:
             raise ValueError('Cannot decode this audio. Try WAV, MP3, M4A, OGG or WebM.') from exc
         duration=len(samples)/16000

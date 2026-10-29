@@ -25,6 +25,8 @@ class NewGame(BaseModel):
 
     @model_validator(mode='after')
     def valid(self):
+        if any(not p.name.strip() for p in self.players):
+            raise ValueError('Player names cannot be blank.')
         if len({p.id for p in self.players})!=len(self.players):
             raise ValueError('Player IDs must be unique.')
         if self.game=='souq_relay' and {p.team for p in self.players}!={'A','B'}:
@@ -112,6 +114,7 @@ def router_for(home,secret,transcriber=None):
         directory=home/'audio'/session_id
         directory.mkdir(parents=True,exist_ok=True)
         path=directory/f'{uuid.uuid4().hex}{suffix}'
+        accepted=False
         try:
             size=0
             with path.open('wb') as stream:
@@ -134,12 +137,15 @@ def router_for(home,secret,transcriber=None):
                 if 'basket' in scoring:s['basket']=scoring['basket']
                 s['busy']=False
                 save(s)
+            accepted=True
             return {'retry_needed':False,'result':result,'signed_result':sign({'game':s['game'],'session_id':s['id'],**result},secret),
                     'session':view(s)}
         except ValueError as exc:
             path.unlink(missing_ok=True)
             raise HTTPException(400,str(exc)) from exc
         finally:
+            if not accepted:
+                path.unlink(missing_ok=True)
             with lock:
                 s['busy']=False
             await audio.close()
