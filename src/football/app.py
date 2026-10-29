@@ -44,13 +44,18 @@ def create_app(home=None, detector=detect):
         executor.shutdown(wait=False,cancel_futures=True)
 
     app=FastAPI(lifespan=lifespan,title='Touchline · Local Football Judge',docs_url='/api/docs',redoc_url=None)
-    app.add_middleware(TrustedHostMiddleware,allowed_hosts=['localhost','127.0.0.1','[::1]','testserver'])
+    allowed_hosts=['localhost','127.0.0.1','[::1]','testserver']
+    render_host=os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+    if render_host: allowed_hosts.append(render_host)
+    allowed_hosts.extend(h.strip() for h in os.environ.get('FOOTBALL_ALLOWED_HOSTS','').split(',') if h.strip())
+    app.add_middleware(TrustedHostMiddleware,allowed_hosts=allowed_hosts)
     app.add_middleware(GZipMiddleware,minimum_size=1000)
 
     @app.middleware('http')
     async def local_only(request: Request, call_next):
         origin=request.headers.get('origin')
-        if origin and origin != f'{request.url.scheme}://{request.headers.get("host", "")}' :
+        parsed_origin=urlparse(origin) if origin else None
+        if parsed_origin and (parsed_origin.scheme not in ['http','https'] or parsed_origin.netloc != request.headers.get('host','')):
             return JSONResponse({'detail':'Only the local app may make requests.'},status_code=403)
         response=await call_next(request)
         response.headers['X-Content-Type-Options']='nosniff'

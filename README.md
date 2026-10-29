@@ -162,3 +162,13 @@ complete competition compliance.
 New application code under `src/`: **AGPL-3.0-or-later**, see [src/LICENSE](src/LICENSE). The repository’s existing root license is retained for its original contents.
 Caveat font: SIL Open Font License. Dependencies retain their own licenses; see
 [third-party notices](src/THIRD_PARTY_NOTICES.md).
+
+## Render deployment
+
+Create a Python Web Service using this repository. Root directory: `src`.
+Build command: `bash render-build.sh`.
+Start command: `python -m football.cli serve --host 0.0.0.0 --port $PORT`.
+Set `PYTHON_VERSION=3.12.10`; health check path: `/api/health`.
+The build installs both AI pipelines and downloads their models. Allow extra build time
+and sufficient RAM for CPU inference. Local data is ephemeral without a persistent disk.
+The root `render.yaml` can also be used as a Blueprint. It generates a stable signing secret.

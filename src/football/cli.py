@@ -16,7 +16,8 @@ def main():
                         help='Local data directory. Keep private; contains the report signing key.')
     sub=parser.add_subparsers(dest='command',required=True)
     serve=sub.add_parser('serve')
-    serve.add_argument('--port',type=int,default=8777)
+    serve.add_argument('--port',type=int,default=int(os.environ.get('PORT','8777')))
+    serve.add_argument('--host',default='127.0.0.1')
     sub.add_parser('download-model')
     sub.add_parser('download-speech-model')
     judge=sub.add_parser('judge')
@@ -29,7 +30,7 @@ def main():
             import uvicorn
             from .app import create_app
             print(f'Open http://127.0.0.1:{args.port} · Ctrl+C to stop')
-            uvicorn.run(create_app(args.home),host='127.0.0.1',port=args.port)
+            uvicorn.run(create_app(args.home),host=args.host,port=args.port)
         elif args.command=='download-model':
             print('Downloading official weights. This step needs internet access.')
             print(download_model(args.home/'models'))
