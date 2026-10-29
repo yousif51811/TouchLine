@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Touchline: a local football judging experiment for family game day.">
+<title>Touchline — A little fair play</title>
+<link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/static/style.css">
+<script src="/static/app.js" defer></script>
+<script src="/static/speech.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to game / انتقل إلى اللعبة</a>
+<header class="topbar">
+<a class="brand" href="/" aria-label="Touchline home"><img src="/static/ball.svg" alt="" width="39" height="39"><span>touchline<span class="brand-dot">.</span></span><small id="brandTag"></small></a>
+<div class="top-actions"><span class="local-pill" id="localPill"></span><button id="allGames" class="text-button">All games</button><button id="helpButton" class="icon-button" aria-label="Setup help">?</button><button id="language" class="language-button" lang="ar">العربية <span>↗</span></button></div>
+</header>
+<div class="app-shell">
+<aside class="sidebar"><div class="notebook-label" id="notebookLabel"></div><nav id="steps" aria-label="Match progress"></nav><div class="side-note"><svg viewBox="0 0 120 70" aria-hidden="true"><path d="M12 15q30 50 80 18m-15-8 17 7-9 15"/></svg><span id="sideNote"></span></div><div class="sidebar-bottom"><span class="tiny-ball">✳</span><span id="sidebarBottom"></span></div></aside>
+<main id="main" tabindex="-1"><div id="content"></div></main>
+</div>
+<footer><span id="footerText"></span><span class="footer-mark">✳ &nbsp; TOUCHLINE / FIELD NOTES № 01</span></footer>
+<div id="notice" class="toast" role="status" aria-live="polite" hidden></div>
+<dialog id="helpDialog"><button id="closeHelp" class="dialog-close" aria-label="Close">×</button><div id="helpContent"></div></dialog>
+</body></html>

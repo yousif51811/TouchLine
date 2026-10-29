@@ -1,0 +1,39 @@
+{
+  "payload": {
+    "schema_version": 1,
+    "game": "football",
+    "sample": true,
+    "report_id": "ILLUSTRATIVE-SAMPLE-NOT-A-JUDGMENT",
+    "match": {
+      "id": "sample-match",
+      "teams": {"A": "The Sunbeams", "B": "The Moonwalkers"},
+      "players": [
+        {"id": "a1", "name": "Amal", "team": "A"},
+        {"id": "a2", "name": "Omar", "team": "A"},
+        {"id": "b1", "name": "Noor", "team": "B"},
+        {"id": "b2", "name": "Zayed", "team": "B"}
+      ]
+    },
+    "video": null,
+    "events": [
+      {"id": "sample-1", "type": "candidate_goal", "time": 13, "team": "A", "points": 1},
+      {"id": "sample-2", "type": "candidate_goal", "time": 35, "team": "B", "points": 1},
+      {"id": "sample-3", "type": "candidate_goal", "time": 49, "team": "A", "points": 1}
+    ],
+    "score": {"A": 2, "B": 1},
+    "possession": {
+      "players": {"a1": 12, "a2": 6, "b1": 8, "b2": 4},
+      "teams": {"A": 18, "B": 12},
+      "unknown_seconds": 30,
+      "duration_seconds": 60,
+      "ball_coverage": 0.5
+    },
+    "mvp": {"status": "winner", "players": ["a1"]},
+    "warnings": [
+      "Illustrative sample only. No video was analyzed and no real AI judgment was produced.",
+      "Candidate goals use 2D image geometry; they do not prove a physical goal-line crossing.",
+      "Stationary-camera footage only. Football accuracy has not been validated on real gameplay."
+    ]
+  },
+  "signature": null
+}

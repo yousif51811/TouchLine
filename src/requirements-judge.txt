@@ -1,0 +1,15 @@
+# CPU wheels prevent downloading the much larger CUDA/GPU stack.
+--extra-index-url https://download.pytorch.org/whl/cpu
+-r requirements.txt
+torch==2.7.0+cpu
+torchvision==0.22.0+cpu
+ultralytics==8.4.63
+lap==0.5.12
+matplotlib==3.10.1
+scipy==1.15.2
+pillow==11.2.1
+polars==1.27.1
+pyyaml==6.0.2
+requests==2.32.3
+psutil==7.0.0
+ultralytics-thop==2.0.18

@@ -1,0 +1,1 @@
+"""Local football judging prototype."""
